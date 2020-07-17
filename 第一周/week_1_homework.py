@@ -102,5 +102,6 @@ img_final = cv2.addWeighted(img_final, 0.9, img_edge, 0.1, 0)
 img_final = imageHistNormalization(img_final)
 img_final = imageHistLinearTransformation(img_final, 1.0, 15)
 
-cv2.imshow("RESULT", cv2.hconcat([original_image, img_final]))
+# cv2.imshow("RESULT", cv2.hconcat([original_image, img_final]))
+cv2.imwrite('BeautyFace.png',img_final)
 cv2.waitKey(0)
