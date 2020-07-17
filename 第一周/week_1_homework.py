@@ -84,7 +84,7 @@ face = get_skin_yuv(img)
 face_bilateralFilter = cv2.bilateralFilter(face, 25, 42, 14)
 # face = cv2.GaussianBlur(face, (3,3), 1)
 img1 = face_bilateralFilter - face + 128
-img2 = cv2.GaussianBlur(img1, (1,1), 0, 0)
+img2 = cv2.GaussianBlur(img1, (1,1), 1, 0)
 # img2 = cv2.GaussianBlur(img1, (3,3), 1)
 img3 = face + img2 * 2 - 255
 img4 = cv2.addWeighted(face, 0.2, img3, 0.8, 0)
@@ -93,15 +93,17 @@ img4 = cv2.addWeighted(face, 0.2, img3, 0.8, 0)
 img_final = cv2.add(img, img4)
 
 # 边缘提取
-img_edge_y = cv2.filter2D(img_final, -1, kernel_edge_y)
-img_edge_x = cv2.filter2D(img_final, -1, kernel_edge_x)
-img_edge = img_edge_x + img_edge_y
-img_final = cv2.addWeighted(img_final, 0.9, img_edge, 0.1, 0)
+# img_edge_y = cv2.filter2D(img_final, -1, kernel_edge_y)
+# img_edge_x = cv2.filter2D(img_final, -1, kernel_edge_x)
+# img_edge = img_edge_x + img_edge_y
+# img_final = cv2.addWeighted(img_final, 0.9, img_edge, 0.1, 0)
 
 # 幅值调整
 img_final = imageHistNormalization(img_final)
-img_final = imageHistLinearTransformation(img_final, 1.0, 15)
+img_final = imageHistLinearTransformation(img_final, 0.9, 10)
 
 # cv2.imshow("RESULT", cv2.hconcat([original_image, img_final]))
-cv2.imwrite('BeautyFace.png',img_final)
+cv2.imwrite('Beauty.png', img_final)
+# 添加水印
+
 cv2.waitKey(0)
