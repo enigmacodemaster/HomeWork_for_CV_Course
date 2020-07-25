@@ -30,7 +30,7 @@ def get_skin_yuv(img):
 # 提升对比度，采用直方图正规化
 def imageHistNormalization(I):
 	'''
-	-- 直方图正规化
+	直方图正规化
 	将Imin和Imax之间的像素值映射到Omin到Omax也就是0-255的区间
 	Imin到Imax的区间范围肯定是小于或等于Omin到Omax的
 	正规化之后不用再进行截断操作了
